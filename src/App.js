@@ -46,6 +46,7 @@ const App = () => {
               />
             }
           />
+          
           <Route path="/essay" element={<Essay />} />
         </Routes>
         {/* Global Money Component */}

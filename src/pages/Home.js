@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Money from "../components/Money";
+import Intro from "../components/decades/Intro"
 import Decade1920 from "../components/decades/1920";
 import Decade1930 from "../components/decades/1930";
 import Decade1940 from "../components/decades/1940";
@@ -15,7 +16,7 @@ import EndGame from "../components/EndGame";
 
 const Home = () => {
   const [money, setMoney] = useState(100); // Initial money state
-  const [currentDecade, setCurrentDecade] = useState(null); // Tracks the active decade
+  const [currentDecade, setCurrentDecade] = useState("intro"); // Tracks the active decade
   const [isDead, setIsDead] = useState(false); // Tracks if the player has died
   const [outcome, setOutcome] = useState(""); // Stores the current outcome message
 
@@ -52,7 +53,13 @@ const Home = () => {
       );
     }
 
-    switch (currentDecade) {
+  switch (currentDecade) {
+      case "intro":
+        return (
+          <Intro
+            onNext={() => setCurrentDecade("1920s")} // Move to 1920s
+          />
+        );
       case "1920s":
         return (
           <Decade1920
@@ -172,7 +179,7 @@ const Home = () => {
     <div className="min-h-screen bg-gray-100">
       <div className="text-center p-4">
         <h1 className="text-4xl font-bold mb-4 text-blue-600">
-          Welcome to the Journey Through History
+          Journey Through History: The Adventures of Samuel
         </h1>
         <p className="text-lg text-gray-700 mb-6">
           Experience the life of Samuel as he navigates through history.
