@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Cowell Creative Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the **Cowell Creative Project**! This project is an interactive, text-based adventure game that takes the player through significant decades of American history, exploring the life of Samuel, a young Black man navigating the ever-changing cultural, social, and economic landscapes of the United States from the 1920s to the 2020s.
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The project follows Samuel as he makes decisions that impact his journey through each decade. The player is presented with various scenarios and must choose how Samuel should respond. Each choice comes with consequences, ranging from financial gains and losses to life-altering outcomes.
 
-### `npm start`
+Samuel's adventure begins in the 1920s and progresses chronologically through each decade, allowing the player to explore historical challenges and opportunities faced by African Americans throughout different periods. The game incorporates humor, historical context, and elements of risk, making it both an educational and engaging experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Key Features
+- **Interactive Gameplay**: Players make choices that determine the fate of Samuel in each decade, simulating the uncertainties and opportunities of life.
+- **Historical Context**: Each decade is crafted to reflect important historical moments and cultural shifts, providing an educational yet fun experience.
+- **Consequential Decisions**: Choices matter! Some decisions lead to financial success, while others can lead to Samuel's untimely death.
+- **Sound Effects**: Audio cues such as the "womp womp" sound effect indicate negative outcomes, adding a layer of immersion.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
+- **React.js**: The core framework for building the interactive UI.
+- **JavaScript**: For adding logic to the interactive elements.
+- **CSS & Tailwind CSS**: Used for styling the components and creating a visually appealing interface.
 
-### `npm test`
+## How to Play
+1. **Start the Game**: Click the "Start Game" button to begin Samuel's journey in the 1920s.
+2. **Make Decisions**: For each decade, you will be presented with a scenario and three choices. Choose carefully, as each decision will have consequences.
+3. **Progress Through History**: Continue making decisions for Samuel, and see how his story unfolds throughout the decades.
+4. **Restart if Necessary**: If Samuel dies, click the "Start again from the 1920s" button to begin the journey anew.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
+To run the project locally:
+1. **Clone the Repository**: `git clone https://github.com/dez03/cowell-creative-project`
+2. **Install Dependencies**: Navigate into the project folder and run `npm install` to install all necessary dependencies.
+3. **Start the Development Server**: Run `npm start` to launch the project in development mode. The application will be available at [http://localhost:3000](http://localhost:3000).
 
-### `npm run build`
+## Contributing
+Contributions are welcome! If you'd like to add new scenarios, enhance existing features, or fix bugs, feel free to fork the repository and submit a pull request.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
+This project is licensed under the MIT License. You are free to use, modify, and distribute the code as long as proper credit is given.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Author
+Created by **dez03** as part of a creative project for Cowell College.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Links
+- **GitHub Repository**: [Cowell Creative Project](https://github.com/dez03/cowell-creative-project)
+- **Play the Game**: [Cowell Creative Project Game](https://cowell-creative-project.vercel.app/)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

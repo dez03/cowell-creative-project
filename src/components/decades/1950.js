@@ -8,23 +8,23 @@ const Decade1950 = ({ money, updateMoney, onDeath, onNext, onReset }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        onDeath(); // Resets money to 100
+        updateMoney(-50);
         setOutcome(
-          "Samuel challenges segregation by attending a whites-only establishment. Tragically, he is violently attacked and loses his life. You died."
+          "Samuel invests his hard-earned money into the scheme and tries to recruit others, but it turns out to be a pyramid scheme. The people he recruited are angry, and Samuel ends up losing $50."
         );
-        setIsDead(true);
+        setShowNextButton(true);
         break;
       case "B":
-        updateMoney(-30); // Subtracts $30 from the current money
+        updateMoney(80); // Adds $80 from the current money
         setOutcome(
-          "Samuel joins the Civil Rights Movement and organizes peaceful protests. Unfortunately, during one march, he is arrested, losing $30 in legal fees."
+          "Samuel decides that the offer sounds too good to be true. He finds a part-time job instead, earning a reliable income. +$80."
         );
         setShowNextButton(true);
         break;
       case "C":
-        updateMoney(40); // Adds $40 to the current money
+        updateMoney(-80); // Subtracts 80 to the current money
         setOutcome(
-          "Samuel moves to the North and finds work in an industrial factory. Though the job is tough, he earns $40 and secures a stable future for his family."
+          "Samuel ignores the offer and buys himself a new suit. He doesn't lose any money to scams, but now he's broke. At least he looked sharp! He loses $80."
         );
         setShowNextButton(true);
         break;
@@ -43,36 +43,35 @@ const Decade1950 = ({ money, updateMoney, onDeath, onNext, onReset }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1950s: The Civil Rights Movement
+        1950s: The Post-War Boom
       </h2>
       <p className="text-gray-700 mb-4">
-        The Civil Rights Movement gains momentum, with African Americans
-        demanding equal rights and an end to segregation.
+        Samuel comes across an opportunity to earn extra money by investing in a
+        company selling the latest home appliances. They promise him that, if he
+        recruits a few more people, he can make a small fortune.
       </p>
 
       {!outcome ? (
         <div>
-          <p className="text-lg font-medium mb-4">
-            Samuel must decide how to support the Civil Rights Movement.
-          </p>
+          <p className="text-lg font-medium mb-4">What should Samuel do?</p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Stay in the South and fight segregation by dining in a
-            whites-only resturant with his homeboys.
+            Invest in the company and recruit others.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Join the Civil Rights Movement and organize peaceful protests alongside Dr. Martin Luther King Jr.
+            Angrily decline and look for a steady job.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Move to the North and work in an industrial factory.
+            Ignore the offer and buy a new suit so he can organize a sit-in in
+            the hottest white only steakhouse in town.
           </button>
         </div>
       ) : (

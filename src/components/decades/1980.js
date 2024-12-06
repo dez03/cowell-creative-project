@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import wompSound from "../assets/womp.mp3"; // Import the death sound effect
 
-const Decade1980 = ({ money, updateMoney, onDeath, onNext }) => {
+const Decade1980 = ({ updateMoney, onNext, onRestart }) => {
   const [outcome, setOutcome] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false);
   const [isDead, setIsDead] = useState(false);
@@ -8,71 +9,69 @@ const Decade1980 = ({ money, updateMoney, onDeath, onNext }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        updateMoney(-40); // Subtracts $40 from the current money
+        updateMoney(-150);
         setOutcome(
-          "Samuel attempted to start his own tech company during the early boom, but poor investments led to failure, costing him $40."
+          "It’s pure cocaine. Samuel becomes addicted, blowing $150 for his next bump."
         );
         setShowNextButton(true);
+        setIsDead(false);
         break;
       case "B":
+        updateMoney(2000);
         setOutcome(
-          "Samuel became involved with the underground drug trade to make quick cash but was caught in a violent altercation and lost his life."
-        ); // Death outcome
-        setIsDead(true);
-        onDeath(); // Reset money in the parent
-        break;
-      case "C":
-        updateMoney(60); // Adds $60 to the current money
-        setOutcome(
-          "Samuel capitalized on the real estate boom, buying and selling properties for significant profit, earning $60."
+          "Samuel manages to successfully sell all the dope, making him a well-known plug, and earns a serious bag! You earn $2000."
         );
         setShowNextButton(true);
+        setIsDead(false);
+        break;
+      case "C": // DEATH
+        setOutcome(
+          "Samuel turns the bag in to the police station, but is wrongfully convicted and spends the rest of his life behind bars. Samuel dies alone in prison."
+        ); // Death outcome
+        setIsDead(true);
+        setShowNextButton(false);
+
+        // Play the womp sound effect when the user dies
+        const audio = new Audio(wompSound);
+        audio.play();
         break;
       default:
         setOutcome("An unexpected error occurred. Please try again.");
     }
   };
 
-  const handleRestart = () => {
-    setOutcome(null);
-    setShowNextButton(false);
-    setIsDead(false);
-  };
-
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1980s: Thriving in a Time of Excess
+        1980s: Say Nope to Dope
       </h2>
       <p className="text-gray-700 mb-4">
-        The 1980s were a time of wealth, technology, and cultural shifts. As
-        greed and ambition shaped the decade, Samuel, now an experienced
-        professional, must decide whether to embrace the risks or play it safe.
-        Can he take advantage of the booming economy without losing everything?
+        The 1980s spark the War on Drugs, and Samuel gets swept up in the chaos.
+        One day, while on a run (the secret to his longevity), he stumbles
+        across a mysterious duffel bag left in an alley. He opens the bag,
+        finding it packed with suspicious white powder.
       </p>
 
       {!outcome ? (
         <div>
-          <p className="text-lg font-medium mb-4">
-            Scenario 1: Navigating the Boom of the 1980s
-          </p>
+          <p className="text-lg font-medium mb-4">What should Samuel do?</p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Start a tech company to ride the early technology boom.
+            Try the product to see what it is.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Engage in the underground drug trade for quick profits.
+            Take the bag home and start moving serious weight.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Invest in real estate during the property boom.
+            Turn it into the cops.
           </button>
         </div>
       ) : (
@@ -88,7 +87,7 @@ const Decade1980 = ({ money, updateMoney, onDeath, onNext }) => {
           )}
           {isDead && (
             <button
-              onClick={handleRestart}
+              onClick={onRestart} // Directly calling the onRestart passed as prop
               className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
             >
               Start again from the 1920s

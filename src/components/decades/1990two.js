@@ -1,39 +1,39 @@
 import React, { useState } from "react";
 import wompSound from "../assets/womp.mp3"; // Import the death sound effect
 
-const Decade1990 = ({ updateMoney, onNext, onRestart }) => {
+const Decade1990two = ({ updateMoney, onNext, onRestart }) => {
   const [outcome, setOutcome] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false);
   const [isDead, setIsDead] = useState(false);
 
   const handleChoice = (choice) => {
     switch (choice) {
-      case "A":
-        updateMoney(-300);
+      case "A": // DEATH
         setOutcome(
-          "The company skyrockets… and crashes within weeks. Samuel loses $300, but gets a free pet bowl as compensation."
+          "Samuel interrupts the battle and gets booed out of the venue. He angered the wrong people and was shot in a drive-by shooting a week later."
         );
-        setShowNextButton(true);
-        setIsDead(false);
-        break;
-      case "B":
-        updateMoney(500);
-        setOutcome(
-          "It’s a hit! By the end of the year, Samuel is known as the “Black Dr. Phil” and makes a profit of $500."
-        );
-        setShowNextButton(true);
-        setIsDead(false);
-        break;
-      case "C": // DEATH
-        setOutcome(
-          "Samuel tries living the thug life, but gets caught up in gun fire while filming a music video and dies."
-        ); // Death outcome
         setIsDead(true);
         setShowNextButton(false);
 
         // Play the womp sound effect when the user dies
         const audio = new Audio(wompSound);
         audio.play();
+        break;
+      case "B":
+        updateMoney(0);
+        setOutcome(
+          "MC Hammer laughs at him off stage, but Samuel’s freestyle goes viral years later. He earns street cred but no money."
+        );
+        setShowNextButton(true);
+        setIsDead(false);
+        break;
+      case "C":
+        updateMoney(3000);
+        setOutcome(
+          "Samuel crushes the audition and tours the world with MC Hammer. He’s now a minor celebrity, earning $3000 in profits."
+        );
+        setShowNextButton(true);
+        setIsDead(false);
         break;
       default:
         setOutcome("An unexpected error occurred. Please try again.");
@@ -43,15 +43,12 @@ const Decade1990 = ({ updateMoney, onNext, onRestart }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1990s: The Dot Com Boom
+        1990s: Hip-Hop Hype
       </h2>
       <p className="text-gray-700 mb-4">
-        The 1990s brought a wave of new opportunities with the rise of the
-        internet, but also some truly bizarre business ideas. One day, while
-        flipping through late-night TV ads, Samuel sees a commercial for a
-        “groundbreaking” dot-com startup looking for investors. It promises to
-        change the world… or at least deliver pet food to your doorstep. Samuel
-        smells opportunity.
+        Samuel finds himself in the heart of the 90s music scene. One day, he
+        gets a flyer for MC Hammer’s backup dancer auditions. This could be his
+        big break! But dancing in parachute pants is harder than it looks.
       </p>
 
       {!outcome ? (
@@ -61,20 +58,21 @@ const Decade1990 = ({ updateMoney, onNext, onRestart }) => {
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Invest all his savings into the startup, Pets.com.
+            Skip the audition and crash a Tupac vs. Biggie rap battle to prove
+            his skills.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Start his own website selling “Samuel’s Life Tips” for $5 per
-            subscription.
+            Show up unprepared, wearing parachute pants two sizes too small, and
+            try to freestyle rap instead.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Ignore the internet hype and look into starting a Hip-Hop career.
+            Practice nonstop for weeks to try to land the role.
           </button>
         </div>
       ) : (
@@ -85,7 +83,7 @@ const Decade1990 = ({ updateMoney, onNext, onRestart }) => {
               onClick={onNext}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              Continue in the 1990s
+              Continue to the 2000s
             </button>
           )}
           {isDead && (
@@ -102,4 +100,4 @@ const Decade1990 = ({ updateMoney, onNext, onRestart }) => {
   );
 };
 
-export default Decade1990;
+export default Decade1990two;

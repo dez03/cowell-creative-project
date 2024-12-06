@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import wompSound from "../assets/womp.mp3"; // Import the sound effect
 
 const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
   const [outcome, setOutcome] = useState(null);
@@ -7,25 +8,32 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
 
   const handleChoice = (choice) => {
     switch (choice) {
-      case "A":
-        updateMoney(40);
+      case "A": // DEATH
         setOutcome(
-          "You worked as a Pullman porter on the railroad and earned $40."
+          "Samuel gets hit by a train while working on the railroads and dies."
         );
-        setShowNextButton(true);
+        // Death outcome
+        setIsDead(true);
+        onDeath(
+          "Samuel gets hit by a train while working on the railroads and dies."
+        );
+
+        // Play the womp sound effect when the user dies
+        const audio = new Audio(wompSound);
+        audio.play();
         break;
       case "B":
-        updateMoney(-30);
+        updateMoney(-60);
         setOutcome(
-          "You participated in a protest for fair wages, but the strike turned violent, leaving you injured and blacklisted. You lost $30."
+          "The strike fails, and Samuel is blacklisted from all jobs in town losing him $60."
         );
         setShowNextButton(true);
         break;
       case "C":
         updateMoney(500);
         setOutcome(
-          "You attempted to rob a local bank and succeeded! You got away with $500. "
-        ); // Set the outcome first
+          "You attempted to rob a local bank and succeeded! You and your partner each got away with $500."
+        );
         setShowNextButton(true);
         break;
       default:
@@ -40,8 +48,8 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
       </h2>
       <p className="text-gray-700 mb-4">
         The Great Depression hits the United States, leading to widespread
-        economic hardship and social unrest. Samuel faces even greater challenges, like job discrimination
-        and segregation.
+        economic hardship and social unrest. Samuel faces even greater
+        challenges, like job discrimination and segregation.
       </p>
 
       {!outcome ? (
@@ -53,19 +61,20 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Work as a Pullman porter on the railroad.
+            Work as a Pullman porter on trains.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Join a protest for fair wages and workers’ rights.
+            Organize a strike for better wages.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Attempt to rob a local bank for quick cash.
+            Attempt to rob a bank with the sketchy dude down the block for quick
+            cash.
           </button>
         </div>
       ) : (
@@ -81,7 +90,7 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
           )}
           {isDead && (
             <button
-              onClick={onDeath} // Calls parent restart logic
+              onClick={() => onDeath("Restarting the game...")}
               className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
             >
               Start again from the 1920s

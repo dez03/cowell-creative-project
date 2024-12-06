@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import wompSound from "../assets/womp.mp3"; // Import the sound effect
 
-const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
+const Decade1960two = ({ updateMoney, onNext, onRestart }) => {
   const [outcome, setOutcome] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false);
   const [isDead, setIsDead] = useState(false);
@@ -8,23 +9,29 @@ const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        updateMoney(-20); // Adds $50 to the current money
+        updateMoney(-20); // Subtract $20 from the current money
         setOutcome(
           "Samuel tried sneaking into a junkyard, but was caught and fined $20 dollars. Samuel never made the rocket."
         );
         setShowNextButton(true);
+        setIsDead(false);
         break;
       case "B":
-        updateMoney(250); // Subtracts $30 from the current money
+        updateMoney(250); // Add $250 to the current money
         setOutcome(
-          "Samuel finds the blueprints and steals them! Miraculously, he wasn’t caught and managed to sell the blueprints in a local black market, making him $250"
+          "Samuel finds the blueprints and steals them! Miraculously, he wasn’t caught and managed to sell the blueprints in a local black market, making him $250."
         );
         setShowNextButton(true);
+        setIsDead(false);
         break;
-      case "C":
+      case "C": // DEATH
         setOutcome("No one likes a crazy person. Samuel dies."); // Set death message
         setIsDead(true);
-        onDeath(); // Reset money to 100 in parent
+        setShowNextButton(false);
+
+        // Play the womp sound effect when the user dies
+        const audio = new Audio(wompSound);
+        audio.play();
         break;
       default:
         setOutcome("An unexpected error occurred. Please try again.");
@@ -32,9 +39,11 @@ const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
   };
 
   const handleRestart = () => {
+    // Reset all necessary states to their initial values
     setOutcome(null);
     setShowNextButton(false);
     setIsDead(false);
+    onRestart(); // Call the restart function to reset global game state, like money
   };
 
   return (
@@ -48,7 +57,27 @@ const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
         handwritten application, so he takes matters into his own hands.
       </p>
 
-      {!outcome ? (
+      {outcome ? (
+        <div className="space-y-4">
+          <p className="text-gray-700 mb-4">{outcome}</p>
+          {showNextButton && (
+            <button
+              onClick={onNext}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Continue to 1970s
+            </button>
+          )}
+          {isDead && (
+            <button
+              onClick={handleRestart}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Start again from the 1920s
+            </button>
+          )}
+        </div>
+      ) : (
         <div>
           <p className="text-lg font-medium mb-4">Does Samuel</p>
           <button
@@ -70,29 +99,9 @@ const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
             Start a conspiracy theory about how the moon landing is fake.
           </button>
         </div>
-      ) : (
-        <div className="space-y-4">
-          <p className="text-gray-700 mb-4">{outcome}</p>
-          {showNextButton && (
-            <button
-              onClick={onNext}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Continue to 1970s
-            </button>
-          )}
-          {isDead && (
-            <button
-              onClick={handleRestart}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-              Start again from the 1920s
-            </button>
-          )}
-        </div>
       )}
     </div>
   );
 };
 
-export default Decade1970two;
+export default Decade1960two;

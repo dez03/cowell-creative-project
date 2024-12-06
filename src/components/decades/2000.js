@@ -8,23 +8,22 @@ const Decade2000 = ({ money, updateMoney, onDeath, onNext }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        updateMoney(-50); // Subtracts $50 from the current money
+        updateMoney(0); 
         setOutcome(
-          "Samuel invested heavily in dot-com companies right before the crash, losing $50 as the bubble burst."
-        );
+          "The world doesn’t end, and Samuel is stuck eating canned Tuna for the next five years. Samuel loses no money.");
         setShowNextButton(true);
         break;
       case "B":
+        updateMoney(1500); 
         setOutcome(
-          "Samuel worked in construction but ignored safety protocols to finish a project early. Tragically, an accident on-site cost him his life."
-        ); // Death outcome
-        setIsDead(true);
-        onDeath(); // Reset money in the parent
+          "Samuel becomes the Jeff Bezos of survival kits, making $1,500 before the clock strikes midnight."
+        );
+        setShowNextButton(true);
         break;
       case "C":
-        updateMoney(80); // Adds $80 to the current money
+        updateMoney(-300);
         setOutcome(
-          "Samuel leveraged his knowledge of real estate to flip properties during the housing boom, earning $80."
+          "The party is legendary, but Samuel gets fined $300 for noise complaints and damages."
         );
         setShowNextButton(true);
         break;
@@ -42,37 +41,34 @@ const Decade2000 = ({ money, updateMoney, onDeath, onNext }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        2000s: Navigating Uncertainty
+        2000s: Y2K Panic!
       </h2>
       <p className="text-gray-700 mb-4">
-        The 2000s brought economic highs and lows, with the dot-com bubble,
-        housing market crash, and rapid globalization. Samuel, now a seasoned
-        professional, faces critical decisions to secure his financial future.
-        Will he take the right risks or fall victim to economic turbulence?
+        As the new millennium begins, everyone is losing their minds over the
+        Y2K bug. Samuel, always one to think ahead, has to decide how to prepare
+        for the apocalypse that may (or may not) come.
       </p>
 
       {!outcome ? (
         <div>
-          <p className="text-lg font-medium mb-4">
-            Scenario 1: Navigating the Early 2000s Economy
-          </p>
+          <p className="text-lg font-medium mb-4">What should Samuel do?</p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Invest heavily in dot-com companies during the tech boom.
+            Stockpile canned food, water, and toilet paper in his basement.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Work in construction and cut corners to finish projects quickly.
+            Start selling “Y2K-proof” survival kits for $100 each.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Flip properties during the housing boom for quick profits.
+            Ignore the hype and throw a massive Y2K New Year’s Eve party.
           </button>
         </div>
       ) : (
@@ -83,7 +79,7 @@ const Decade2000 = ({ money, updateMoney, onDeath, onNext }) => {
               onClick={onNext}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              Continue to 2010s
+              Continue in the 2000s
             </button>
           )}
           {isDead && (

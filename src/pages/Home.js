@@ -1,50 +1,49 @@
 import React, { useState } from "react";
 import Money from "../components/Money";
-import Intro from "../components/decades/Intro"
+import Intro from "../components/decades/Intro";
 import Decade1920 from "../components/decades/1920";
 import Decade1930 from "../components/decades/1930";
 import Decade1940 from "../components/decades/1940";
 import Decade1950 from "../components/decades/1950";
 import Decade1960 from "../components/decades/1960";
-import Decade1960two from "../components/decades/1960two"
-import Decade1970 from "../components/decades/1970";
-import Decade1970two from "../components/decades/1970two"
+import Decade1960two from "../components/decades/1960two";
+import Decade1970 from "../components/decades/1970"; // <-- Import Decade1970
+import Decade1970two from "../components/decades/1970two";
 import Decade1980 from "../components/decades/1980";
 import Decade1990 from "../components/decades/1990";
+import Decade1990two from "../components/decades/1990two";
 import Decade2000 from "../components/decades/2000";
+import Decade2000two from "../components/decades/2000two";
+import Decade2000three from "../components/decades/2000three";
 import Decade2010 from "../components/decades/2010";
+import Decade2010two from "../components/decades/2010two";
 import Decade2020 from "../components/decades/2020";
+import Decade2020two from "../components/decades/2020two";
 import EndGame from "../components/EndGame";
 
 const Home = () => {
   const [money, setMoney] = useState(100); // Initial money state
   const [currentDecade, setCurrentDecade] = useState("intro"); // Tracks the active decade
   const [isDead, setIsDead] = useState(false); // Tracks if the player has died
-  const [outcome, setOutcome] = useState(""); // Stores the current outcome message
 
   const updateMoney = (amount) => {
     setMoney((prevMoney) => prevMoney + amount); // Adjust money based on choices
   };
 
-  const handleDeath = (deathOutcome) => {
+  const handleDeath = () => {
     setIsDead(true); // Mark the player as dead
-    setOutcome(deathOutcome); // Store the death outcome
-    setMoney(100); // Reset money to 100
   };
-
 
   const handleRestart = () => {
     setMoney(100); // Reset money to $100
-    setCurrentDecade("1920s"); // Restart the game at 1920s
+    setCurrentDecade("intro"); // Restart the game at intro
     setIsDead(false); // Reset death status
-    setOutcome(""); // Clear the outcome message
   };
 
   const renderDecade = () => {
     if (isDead) {
       return (
         <div>
-          <p className="text-gray-700 mb-4">{outcome}</p>
           <button
             onClick={handleRestart}
             className="px-6 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-700"
@@ -55,7 +54,7 @@ const Home = () => {
       );
     }
 
-  switch (currentDecade) {
+    switch (currentDecade) {
       case "intro":
         return (
           <Intro
@@ -67,7 +66,7 @@ const Home = () => {
           <Decade1920
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onDeath={handleDeath}
             onNext={() => setCurrentDecade("1930s")}
           />
         );
@@ -76,16 +75,15 @@ const Home = () => {
           <Decade1930
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onDeath={handleDeath}
             onNext={() => setCurrentDecade("1940s")}
           />
         );
       case "1940s":
         return (
           <Decade1940
-            money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onDeath={handleDeath}
             onNext={() => setCurrentDecade("1950s")}
           />
         );
@@ -94,7 +92,7 @@ const Home = () => {
           <Decade1950
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onDeath={handleDeath}
             onNext={() => setCurrentDecade("1960s")}
           />
         );
@@ -103,8 +101,8 @@ const Home = () => {
           <Decade1960
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1960two")} // Move to 1970s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1960two")}
           />
         );
       case "1960two":
@@ -112,17 +110,18 @@ const Home = () => {
           <Decade1960two
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1970s")} // Move to 1970s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1970s")}
           />
-      );
+        );
       case "1970s":
         return (
           <Decade1970
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1970two")} // Move to 1970two
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1970two")}
+            onRestart={handleRestart} // Make sure onRestart is passed
           />
         );
       case "1970two":
@@ -130,8 +129,9 @@ const Home = () => {
           <Decade1970two
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1980s")} // Move to 1980s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1980s")}
+            onRestart={handleRestart}
           />
         );
       case "1980s":
@@ -139,8 +139,9 @@ const Home = () => {
           <Decade1980
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1990s")} // Move to 1990s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1990s")}
+            onRestart={handleRestart}
           />
         );
       case "1990s":
@@ -148,17 +149,49 @@ const Home = () => {
           <Decade1990
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("2000s")} // Move to 2000s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("1990two")}
+            onRestart={handleRestart}
           />
         );
+      case "1990two":
+        return (
+          <Decade1990two
+            money={money}
+            updateMoney={updateMoney}
+            onNext={() => setCurrentDecade("2000s")}
+            onRestart={handleRestart} // Pass handleRestart to the component
+          />
+        );
+
       case "2000s":
         return (
           <Decade2000
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("2010s")} // Move to 2010s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2000two")}
+            onRestart={handleRestart}
+          />
+        );
+      case "2000two":
+        return (
+          <Decade2000two
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2000three")}
+            onRestart={handleRestart}
+          />
+        );
+      case "2000three":
+        return (
+          <Decade2000three
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2010s")}
+            onRestart={handleRestart}
           />
         );
       case "2010s":
@@ -166,8 +199,19 @@ const Home = () => {
           <Decade2010
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("2020s")} // Move to 2020s
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2010two")}
+            onRestart={handleRestart}
+          />
+        );
+      case "2010two":
+        return (
+          <Decade2010two
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2020s")}
+            onRestart={handleRestart}
           />
         );
       case "2020s":
@@ -175,13 +219,23 @@ const Home = () => {
           <Decade2020
             money={money}
             updateMoney={updateMoney}
-            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("end")} // Show end screen
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("2020two")}
+            onRestart={handleRestart}
+          />
+        );
+      case "2020two":
+        return (
+          <Decade2020two
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={handleDeath}
+            onNext={() => setCurrentDecade("end")}
+            onRestart={handleRestart}
           />
         );
       case "end":
         return <EndGame money={money} onRestart={handleRestart} />;
-
       default:
         return (
           <button
@@ -193,7 +247,6 @@ const Home = () => {
         );
     }
   };
-
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -212,9 +265,19 @@ const Home = () => {
       </div>
       <div className="text-center mt-6">
         <Money amount={money} />
+        <a
+          href="https://github.com/dez03/cowell-creative-project"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 underline hover:text-blue-700"
+        >
+          View on GitHub
+        </a>
       </div>
     </div>
   );
 };
 
 export default Home;
+
+
