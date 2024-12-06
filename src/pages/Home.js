@@ -6,7 +6,9 @@ import Decade1930 from "../components/decades/1930";
 import Decade1940 from "../components/decades/1940";
 import Decade1950 from "../components/decades/1950";
 import Decade1960 from "../components/decades/1960";
+import Decade1960two from "../components/decades/1960two"
 import Decade1970 from "../components/decades/1970";
+import Decade1970two from "../components/decades/1970two"
 import Decade1980 from "../components/decades/1980";
 import Decade1990 from "../components/decades/1990";
 import Decade2000 from "../components/decades/2000";
@@ -102,16 +104,34 @@ const Home = () => {
             money={money}
             updateMoney={updateMoney}
             onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1970s")} // Move to 1970s
+            onNext={() => setCurrentDecade("1960two")} // Move to 1970s
           />
         );
+      case "1960two":
+        return (
+          <Decade1960two
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onNext={() => setCurrentDecade("1970s")} // Move to 1970s
+          />
+      );
       case "1970s":
         return (
           <Decade1970
             money={money}
             updateMoney={updateMoney}
             onDeath={(deathOutcome) => handleDeath(deathOutcome)}
-            onNext={() => setCurrentDecade("1980s")} // Move to 1970s
+            onNext={() => setCurrentDecade("1970two")} // Move to 1970two
+          />
+        );
+      case "1970two":
+        return (
+          <Decade1970two
+            money={money}
+            updateMoney={updateMoney}
+            onDeath={(deathOutcome) => handleDeath(deathOutcome)}
+            onNext={() => setCurrentDecade("1980s")} // Move to 1980s
           />
         );
       case "1980s":

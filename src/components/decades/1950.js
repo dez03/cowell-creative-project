@@ -43,36 +43,30 @@ const Decade1950 = ({ money, updateMoney, onDeath, onNext, onReset }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1950s: Battling Segregation and Embracing Opportunities
+        1950s: The Civil Rights Movement
       </h2>
       <p className="text-gray-700 mb-4">
-        The 1950s were marked by the fight for civil rights, widespread
-        segregation, and limited opportunities for Black Americans. Samuel, now
-        a father, strives to provide for his family and protect them from the
-        harsh realities of systemic racism. As the Civil Rights Movement begins
-        to gain momentum, Samuel faces critical decisions that could shape his
-        and his family’s future. Will he find a way to prosper or fall victim to
-        the obstacles of the era?
+        The Civil Rights Movement gains momentum, with African Americans
+        demanding equal rights and an end to segregation.
       </p>
 
       {!outcome ? (
         <div>
           <p className="text-lg font-medium mb-4">
-            How should Samuel navigate the challenges of the 1950s to secure a
-            better future for his family?
+            Samuel must decide how to support the Civil Rights Movement.
           </p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Stay in the South and challenge segregation by attending a
-            whites-only establishment.
+            Stay in the South and fight segregation by dining in a
+            whites-only resturant with his homeboys.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Join the Civil Rights Movement and organize peaceful protests.
+            Join the Civil Rights Movement and organize peaceful protests alongside Dr. Martin Luther King Jr.
           </button>
           <button
             onClick={() => handleChoice("C")}

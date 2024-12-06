@@ -41,7 +41,8 @@ const Decade1920 = ({ money, updateMoney, onDeath, onNext }) => {
       {!outcome ? (
         <div>
           <p className="text-lg font-medium mb-4">
-            Scenario 1: Pursuing Opportunity in Harlem
+            Samuel must decide how to seize opportunities during the Harlem
+            Renaissance.
           </p>
           <button
             onClick={() => handleChoice("A")}

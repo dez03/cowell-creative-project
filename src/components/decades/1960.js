@@ -42,38 +42,34 @@ const Decade1960 = ({ money, updateMoney, onDeath, onNext }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1960s: Fighting for Equality
+        1960s: The Hippie Era and Space Race
       </h2>
       <p className="text-gray-700 mb-4">
-        The 1960s were a transformative decade for America, marked by the Civil
-        Rights Movement, the Vietnam War, and social unrest. Samuel, now a
-        passionate activist, faces opportunities and risks in his fight for
-        equality and justice. Can he navigate these turbulent times and create a
-        better future for his family?
+        Samuel finds himself at Woodstock, surrounded by music, peace, and love.
+        A stranger approaches him and offers him a hit of LSD, promising an
+        enlightening experience. What should Samuel do?
       </p>
 
       {!outcome ? (
         <div>
-          <p className="text-lg font-medium mb-4">
-            Scenario 1: Navigating the Civil Rights Movement
-          </p>
+          <p className="text-lg font-medium mb-4">What should Samuel do?</p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Join the Civil Rights Movement and lead peaceful marches.
+            Take the LSD and join the stranger.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Volunteer for the Vietnam War to earn a steady income.
+            Politely decline and enjoy the music instead.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Confront a local KKK chapter directly.
+            Walk away without saying anything.
           </button>
         </div>
       ) : (
@@ -84,7 +80,7 @@ const Decade1960 = ({ money, updateMoney, onDeath, onNext }) => {
               onClick={onNext}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              Continue to 1970s
+              Continue in the 1960s
             </button>
           )}
           {isDead && (

@@ -10,25 +10,26 @@ const Decade1970 = ({ money, updateMoney, onDeath, onNext }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        updateMoney(60); // Subtracts $20 from the current money
+        updateMoney(-100); // Subtracts $100 from the current money
         setOutcome(
-          "The vibes are reciprocated and Samuel successfully started a dance protest. Everyone made it into the club that night. Samuel was tipped $60"
+          "Samuel is caught mid-dump and gets sued for trespassing. Samuel loses $100 in court fees and gets banned from gardening stores for life."
         );
         setShowNextButton(true);
         break;
       case "B":
+        updateMoney(200);
         setOutcome(
-          "Samuel is caught as a fraudulent reporter and gets beaten by the bouncers. Congrats, you died."
+          "The pesticide works surprisingly well, and local farmers start calling it “Samuel’s Spicy Savior.” He earns $200 and is nicknamed the “Hot Sauce Hero.”"
+        ); 
+        setShowNextButton(true);
+        break;
+      case "C":
+        updateMoney(50); // Adds $50 to the current money
+        setOutcome(
+          "Tragically, Samuel didn’t test the mixture well enough. It’s extremely toxic to humans, and Samuel dies."
         ); // Death outcome
         setIsDead(true);
         onDeath(); // Reset money in the parent
-        break;
-      case "C":
-        updateMoney(-20); // Adds $50 to the current money
-        setOutcome(
-          "Samuel gets let into the club, but has to pay a $20 entrance fee."
-        );
-        setShowNextButton(true);
         break;
       default:
         setOutcome("An unexpected error occurred. Please try again.");
@@ -56,13 +57,12 @@ const Decade1970 = ({ money, updateMoney, onDeath, onNext }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1970s: Disco Justice
+        1970s: Environmental Revolution
       </h2>
       <p className="text-gray-700 mb-4">
-        Samuel witnesses the shady owner of the hottest disco club in town
-        refusing to let people in based on their “vibes” (racial
-        discrimination). Samuel decides it’s time to bring some funky justice to
-        the dance floor.
+        After reading Rachel Carson’s book "Silent Spring", Samuel becomes
+        deeply concerned about pesticide use and environmental impact. Feeling
+        inspired, he decides to take action.
       </p>
 
       {!outcome ? (
@@ -74,22 +74,21 @@ const Decade1970 = ({ money, updateMoney, onDeath, onNext }) => {
             onMouseLeave={handleMouseLeave}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Sneak in with a boombox blasting “Stayin’ Alive” and start an
-            impromptu dance protest.
+            Dump a bag of toxic fertilizer into the garden of a CEO of a
+            chemical plant as a statement.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Expose the owner’s shady dealings by pretending to be an undercover
-            reporter for Rolling Stone.
+            Create an organic pesticide made from hot sauce and garlic to sell
+            at the farmers’ market.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Change into a flashy outfit in hopes you won’t be profiled due to
-            your swag.
+            Drink his homemade pesticide to prove it’s safe.
           </button>
         </div>
       ) : (

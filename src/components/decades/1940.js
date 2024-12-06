@@ -43,22 +43,18 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext, onReset }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1940s: Fighting for Freedom and Opportunity
+        1940s: World War II
       </h2>
       <p className="text-gray-700 mb-4">
-        The 1940s were defined by World War II and the fight for civil rights at
-        home. Samuel, now a middle-aged man, faces a world at war and a country
-        grappling with racial inequality. As African Americans are called to
-        support the war effort, Samuel must decide how best to contribute to his
-        family, his community, and his country. Will he seize opportunities in a
-        changing world or face the harsh realities of systemic racism?
+        The United States enters World War II, leading to increased
+        opportunities for African Americans, particularly in the military.
+        However, racial discrimination and segregation persist.
       </p>
 
       {!outcome ? (
         <div>
           <p className="text-lg font-medium mb-4">
-            How should Samuel contribute to his family and country during this
-            turbulent time?
+            Samuel must decide whether to enlist in the military.
           </p>
           <button
             onClick={() => handleChoice("A")}
@@ -70,7 +66,7 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext, onReset }) => {
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Work in a wartime factory producing weapons and supplies.
+            Work in a defense factory producing weapons and supplies.
           </button>
           <button
             onClick={() => handleChoice("C")}

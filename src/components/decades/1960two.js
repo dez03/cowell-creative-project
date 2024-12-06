@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
+const Decade1970two = ({ money, updateMoney, onDeath, onNext }) => {
   const [outcome, setOutcome] = useState(null);
   const [showNextButton, setShowNextButton] = useState(false);
   const [isDead, setIsDead] = useState(false);
@@ -8,64 +8,66 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
   const handleChoice = (choice) => {
     switch (choice) {
       case "A":
-        updateMoney(40);
+        updateMoney(-20); // Adds $50 to the current money
         setOutcome(
-          "You worked as a Pullman porter on the railroad and earned $40."
+          "Samuel tried sneaking into a junkyard, but was caught and fined $20 dollars. Samuel never made the rocket."
         );
         setShowNextButton(true);
         break;
       case "B":
-        updateMoney(-30);
+        updateMoney(250); // Subtracts $30 from the current money
         setOutcome(
-          "You participated in a protest for fair wages, but the strike turned violent, leaving you injured and blacklisted. You lost $30."
+          "Samuel finds the blueprints and steals them! Miraculously, he wasn’t caught and managed to sell the blueprints in a local black market, making him $250"
         );
         setShowNextButton(true);
         break;
       case "C":
-        updateMoney(500);
-        setOutcome(
-          "You attempted to rob a local bank and succeeded! You got away with $500. "
-        ); // Set the outcome first
-        setShowNextButton(true);
+        setOutcome("No one likes a crazy person. Samuel dies."); // Set death message
+        setIsDead(true);
+        onDeath(); // Reset money to 100 in parent
         break;
       default:
         setOutcome("An unexpected error occurred. Please try again.");
     }
   };
 
+  const handleRestart = () => {
+    setOutcome(null);
+    setShowNextButton(false);
+    setIsDead(false);
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        1930s: The Great Depression
+        1960s: The Hippie Era and Space Race
       </h2>
       <p className="text-gray-700 mb-4">
-        The Great Depression hits the United States, leading to widespread
-        economic hardship and social unrest. Samuel faces even greater challenges, like job discrimination
-        and segregation.
+        Samuel, inspired by the moon landing hype, decides he’s got what it
+        takes to join the space race. But NASA doesn’t respond to his
+        handwritten application, so he takes matters into his own hands.
       </p>
 
       {!outcome ? (
         <div>
-          <p className="text-lg font-medium mb-4">
-            How should Samuel support himself?
-          </p>
+          <p className="text-lg font-medium mb-4">Does Samuel</p>
           <button
             onClick={() => handleChoice("A")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Work as a Pullman porter on the railroad.
+            Build a rocket out of lawnmower parts and fireworks.
           </button>
           <button
             onClick={() => handleChoice("B")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded mb-2"
           >
-            Join a protest for fair wages and workers’ rights.
+            Sneak into NASA disguised as a janitor to “borrow” blueprints.
           </button>
           <button
             onClick={() => handleChoice("C")}
             className="block w-full text-left px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 rounded"
           >
-            Attempt to rob a local bank for quick cash.
+            Start a conspiracy theory about how the moon landing is fake.
           </button>
         </div>
       ) : (
@@ -76,12 +78,12 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
               onClick={onNext}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              Continue to 1940s
+              Continue to 1970s
             </button>
           )}
           {isDead && (
             <button
-              onClick={onDeath} // Calls parent restart logic
+              onClick={handleRestart}
               className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
             >
               Start again from the 1920s
@@ -93,4 +95,4 @@ const Decade1930 = ({ money, updateMoney, onDeath, onNext }) => {
   );
 };
 
-export default Decade1930;
+export default Decade1970two;
