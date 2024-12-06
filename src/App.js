@@ -47,9 +47,9 @@ const App = () => {
           />
           <Route path="/essay" element={<Essay />} />
         </Routes>
-        <div className="text-center mt-6">
+        {/* <div className="text-center mt-6">
           <Money amount={money} />
-        </div>
+        </div> */}
       </div>
     </Router>
   );

@@ -249,22 +249,26 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="text-center p-4">
-        <h1 className="text-4xl font-bold mb-4 text-blue-600">
-          Journey Through History: The Adventures of Samuel
-        </h1>
-        <p className="text-lg text-gray-700 mb-6">
-          Experience the life of Samuel as he navigates through history.
-        </p>
-        <div className="flex items-center justify-center">
-          <div className="w-3/4 max-w-2xl bg-white shadow-lg rounded-lg p-6">
-            {renderDecade()}
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      <div className="flex-grow">
+        <div className="text-center p-4">
+          <h1 className="text-4xl font-bold mb-4 text-blue-600">
+            Journey Through History: The Adventures of Samuel
+          </h1>
+          <p className="text-lg text-gray-700 mb-6">
+            Experience the life of Samuel as he navigates through history.
+          </p>
+          <div className="flex items-center justify-center">
+            <div className="w-3/4 max-w-2xl bg-white shadow-lg rounded-lg p-6">
+              {renderDecade()}
+            </div>
           </div>
         </div>
+        <div className="text-center mt-6">
+          <Money amount={money} />
+        </div>
       </div>
-      <div className="text-center mt-6">
-        <Money amount={money} />
+      <div className="text-center mb-6">
         <a
           href="https://github.com/dez03/cowell-creative-project"
           target="_blank"
@@ -276,6 +280,8 @@ const Home = () => {
       </div>
     </div>
   );
+
+
 };
 
 export default Home;
